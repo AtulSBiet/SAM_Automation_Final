@@ -1,45 +1,13 @@
 ﻿'LoginSamService
 Systemutil.Run ieExecutableLocation, samServiceUrl
 Call LoginSamService(samUserName,samPassword)
-With Browser("Browser")
-	With .Dialog("Windows Security")
-		.WinEdit("WinEdit").Set "samdemo\administrator" @@ hightlight id_;_1049404_;_script infofile_;_ZIP::ssf80.xml_;_
-		.WinEdit("WinEdit").Type  micTab @@ hightlight id_;_1049404_;_script infofile_;_ZIP::ssf81.xml_;_
-		.WinEdit("WinEdit_2").SetSecure "55e7e04057b2a1bc2def2b40b4918ad9d007e9c22f3e" @@ hightlight id_;_721484_;_script infofile_;_ZIP::ssf82.xml_;_
-		.WinEdit("WinEdit_2").Type  micReturn @@ hightlight id_;_721484_;_script infofile_;_ZIP::ssf83.xml_;_
-	End With
-	'Enroll Token From SamService
-	With .Page("SAM Self Service Center")
-		.Link("Enroll a new smartcard").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").Link("Enroll a new smartcard")_;_script infofile_;_ZIP::ssf84.xml_;_
-		.Link("Start").Click
-		.Link("Yes. Continue with the").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Yes. Continue with the")_;_script infofile_;_ZIP::ssf93.xml_;_
-		.WebEdit("ctl00$main$txtTokenPin").SetSecure "55e7e14e627e62aa6414a9281ae4a046cb32c4e59a6d2446d622" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebEdit("ctl00$main$txtTokenPin")_;_script infofile_;_ZIP::ssf94.xml_;_
-		.WebButton("Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf95.xml_;_
-		.WebButton("Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf100.xml_;_
-	End With
+Call EnrollUSBTokenSAMService()	
 	'-----------------Close browser
-	SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
-
-	'loginSamManage
-	Systemutil.Run ieExecutableLocation, samManageUrl
-
-	With .Dialog("Windows Security")
-		.WinEdit("WinEdit").Set "samdemo\administrator" @@ hightlight id_;_459988_;_script infofile_;_ZIP::ssf102.xml_;_
-		.WinEdit("WinEdit").Type  micTab @@ hightlight id_;_459988_;_script infofile_;_ZIP::ssf103.xml_;_
-		.WinEdit("WinEdit_2").SetSecure "55e7f0d3c38eebef9f3bffbd4b3f4be6a4b8739c2d1c" @@ hightlight id_;_918594_;_script infofile_;_ZIP::ssf104.xml_;_
-		.WinButton("OK").Click @@ hightlight id_;_2491338_;_script infofile_;_ZIP::ssf105.xml_;_
-	End With
-	With .Page("SAM Management Center")
-		.WebList("ddlSearchField1").Select "Tokens by user" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center").WebList("ddlSearchField1")_;_script infofile_;_ZIP::ssf106.xml_;_
-		.WebEdit("txtSearchValue1").Set "a" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center").WebEdit("txtSearchValue1")_;_script infofile_;_ZIP::ssf107.xml_;_
-		.WebButton("Go").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center").WebButton("Go")_;_script infofile_;_ZIP::ssf108.xml_;_
-		.WebButton("Unassign").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebButton("Unassign")_;_script infofile_;_ZIP::ssf109.xml_;_
-		.WebButton("Run").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebButton("Run")_;_script infofile_;_ZIP::ssf110.xml_;_
-		wait(5)
-		.WebButton("Done").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebButton("Done")_;_script infofile_;_ZIP::ssf111.xml_;_
-	End With
-End With
-
+SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
+'loginSamManage
+Systemutil.Run ieExecutableLocation, samManageUrl
+Call LoginSamManage(samUserName,samPassword)
+Call UnassignTokenSAMManage("Tokens by user","a")
 
 'UnassignFromSamMAnage
 
