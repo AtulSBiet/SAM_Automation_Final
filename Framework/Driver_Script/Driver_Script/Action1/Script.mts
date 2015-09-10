@@ -7,7 +7,27 @@ SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser
 'loginSamManage
 Systemutil.Run ieExecutableLocation, samManageUrl
 Call LoginSamManage(samUserName,samPassword)
-Call UnassignTokenSAMManage("Tokens by user","a")
+Call EnrollUSBTokenSAMManage("Users by username", "a")
+
+
+'Call UnassignTokenSAMManage("Tokens by user","a")
+
+Call RemoveTokenFromInventory("Users by username", "a")
+
+With Browser("Browser")
+	With .Page("SAM Management Center")
+		.Link("Inventory").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").Link("Inventory")_;_script infofile_;_ZIP::ssf115.xml_;_
+		.WebList("ddlSearchField1").Select "Tokens by user" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebList("ddlSearchField1")_;_script infofile_;_ZIP::ssf118.xml_;_
+		.WebEdit("txtSearchValue1").Set "a" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebEdit("txtSearchValue1")_;_script infofile_;_ZIP::ssf119.xml_;_
+		.WebButton("Go").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 2").WebButton("Go")_;_script infofile_;_ZIP::ssf120.xml_;_
+	End With
+	With .Page("SAM Management Center")
+		.WbfGrid("grvTokensList").SetCellData 2,1,"ON" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 3").WbfGrid("grvTokensList")_;_script infofile_;_ZIP::ssf124.xml_;_
+		.WebButton("Remove").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 3").WebButton("Remove")_;_script infofile_;_ZIP::ssf125.xml_;_
+		.WebButton("Run").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 3").WebButton("Run")_;_script infofile_;_ZIP::ssf126.xml_;_
+		.WebButton("Done").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 3").WebButton("Done")_;_script infofile_;_ZIP::ssf127.xml_;_
+	End With
+End With
 
 'UnassignFromSamMAnage
 
