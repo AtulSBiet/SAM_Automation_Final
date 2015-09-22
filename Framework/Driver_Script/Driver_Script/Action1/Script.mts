@@ -9,10 +9,9 @@ Systemutil.Run ieExecutableLocation, samManageUrl
 Call LoginSamManage(samUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", "a")
 
+Call UnassignTokenSAMManage("Tokens by user","a")
 
-'Call UnassignTokenSAMManage("Tokens by user","a")
-
-Call RemoveTokenFromInventory("Users by username", "a")
+Call RemoveTokenFromInventory("Connected tokens")
 
 
 
