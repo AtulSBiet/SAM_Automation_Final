@@ -8,12 +8,9 @@ SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser
 Systemutil.Run ieExecutableLocation, samManageUrl
 Call LoginSamManage(samUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", "a")
-
+Call CompareCertSerNoInSacAndSam()
 Call UnassignTokenSAMManage("Tokens by user","a")
-
 Call RemoveTokenFromInventory("Connected tokens")
-
-
 
 'UnassignFromSamMAnage
 
