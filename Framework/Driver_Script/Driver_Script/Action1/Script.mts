@@ -6,11 +6,48 @@ Call EnrollUSBTokenSAMService()
 SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
 'loginSamManage
 Systemutil.Run ieExecutableLocation, samManageUrl
-Call LoginSamManage(samUserName,samPassword)
-Call EnrollUSBTokenSAMManage("Users by username", "a")
+'Call LoginSamManage(samUserName,samPassword)
+'With Browser("Browser").Page("AdamLoginPage")
+'		.WebEdit("UserName").Set samADAMUserName
+'		.WebEdit("UserPass").SetSecure samPassword
+'		.WebButton("Log On").Click
+'End With
+
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam()
-Call UnassignTokenSAMManage("Tokens by user","a")
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+'Call UnlockTokenSAMManage()
+'Browser("Browser").Page("SAM Management Center_3").Link("Helpdesk").Click
+'Browser("Browser").Page("SAM Management Center_2").WebList("ddlSearchField1").Select "Tokens by user"
+'Browser("Browser").Page("SAM Management Center_2").WebButton("Go").Click
+'Browser("Browser").Page("SAM Management Center_3").WebEdit("txtSearchValue1").Set "a"
+'Browser("Browser").Page("SAM Management Center_3").WebButton("Go").Click
+'Browser("Browser").Page("SAM Management Center_3").WebButton("Unlock").Click
+'Window("Window_2").WinToolbar("Overflow Notification").Press "SafeNet Authentication Client"
+'Window("SafeNet Authentication").Restore
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinButton("Button").Click
+'Browser("Browser").Page("SAM Management Center_3").Link("Paste").Click
+'Browser("Browser").Dialog("Internet Explorer").WinButton("Allow access").Click
+'Browser("Browser").Page("SAM Management Center_3").WebButton("Run").Click
+'Browser("Browser").Page("SAM Management Center_3").Link("Copy").Click
+'Browser("Browser").Page("SAM Management Center_3").WebButton("Done").Click
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("Response Code:").WinMenu("ContextMenu").Select "Paste"
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("New Password:").SetSecure "56023cc584ed65abc1cb07874b7aed2ba2eb4c97e19e"
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("New Password:").Type  micTab 
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("Confirm Password:").SetSecure "56023ccc748eb0c4ead9a7887db4e32c51eacf4d5ffb"
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinButton("OK").Click
+'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").Dialog("Unlock Token: My Token").WinButton("OK").Click
+
+Call DisableTokenSAMManage()
+Call EnableTokenSAMMamange()
+
+Browser("Browser").Page("SAM Management Center_5").WebList("ddlHelpDeskButtons").Select "Enable" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlHelpDeskButtons")_;_script infofile_;_ZIP::ssf207.xml_;_
+Browser("Browser").Page("SAM Management Center_5").WebButton("Run").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Run")_;_script infofile_;_ZIP::ssf208.xml_;_
+Browser("Browser").Page("SAM Management Center_5").WebButton("Done").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Done")_;_script infofile_;_ZIP::ssf209.xml_;_
+
+
 Call RemoveTokenFromInventory("Connected tokens")
+
 
 'UnassignFromSamMAnage
 
@@ -123,7 +160,7 @@ Dim s_count
    	        
    	         If Trim(s_IP_Address_Regression)=Trim(IP_Address) Then
  	
- 		        	If  s_Test_Name <>"" and  (Trim(s_Indicator)=Trim("Y") or Trim(s_Indicator)=Trim("y") ) and UCase(trim(s_Status))="INPROGRESS"  Then
+ 		        	If  s_Test_Name <>"" and  (Trim(s_Indicator)=Trim("Y") or Trim(s_Indicator)=Trim("Y") ) and UCase(trim(s_Status))="INPROGRESS"  Then
 		       '---------------------Calling Test Case Function to execute the Test Case Function------------------
 		               call fn_ExecutionLog("Execution of"&s_Test_Name&"is going to start ","PASS")
 		               
