@@ -1,38 +1,21 @@
-﻿'LoginSamService
+﻿''LoginSamService
 'Systemutil.Run ieExecutableLocation, samServiceUrl
 'Call LoginSamService(samUserName,samPassword)
 'Call EnrollUSBTokenSAMService()	
-'-----------------Close browser
+''-----------------Close browser
 'SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
-'loginSamManage
-'Systemutil.Run ieExecutableLocation, samManageUrl
+''loginSamManage
+Systemutil.Run ieExecutableLocation, samManageUrl
 'Call LoginSamManage(samUserName,samPassword)
-'With Browser("Browser").Page("AdamLoginPage")
-'		.WebEdit("UserName").Set samADAMUserName
-'		.WebEdit("UserPass").SetSecure samPassword
-'		.WebButton("Log On").Click
-'End With
-
-'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call CompareCertSerNoInSacAndSam()
-'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call UnlockTokenSAMManage()
-
-'****TODO:Paste response code in SAC and Unlock from SAC
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("Response Code:").WinMenu("ContextMenu").Select "Paste"
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("New Password:").SetSecure "56023cc584ed65abc1cb07874b7aed2ba2eb4c97e19e"
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("New Password:").Type  micTab 
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinEdit("Confirm Password:").SetSecure "56023ccc748eb0c4ead9a7887db4e32c51eacf4d5ffb"
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").WinButton("OK").Click
-'Window("SafeNet Authentication").Dialog("Unlock Token: My Token").Dialog("Unlock Token: My Token").WinButton("OK").Click
-
+Call LoginSAMManageADAM(samADAMUserName,samPassword)
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call CompareCertSerNoInSacAndSam()
+Call UnlockTokenSAMManage()'Copied response code
+'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
 Call DisableTokenSAMManage()
-'
-'Call EnableTokenSAMManage()
-'Call RemoveTokenFromInventory("Connected tokens")
-
-
-'UnassignFromSamMAnage
+Call EnableTokenSAMManage()
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
 
 'Browser("Browser").Page("Page").Sync
 'Option Explicit
@@ -212,5 +195,3 @@ Dim s_count
  Wend
  
  '--------------------End Of Driver Script---------------------------------------
- 
- 
