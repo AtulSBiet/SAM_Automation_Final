@@ -38,10 +38,14 @@ Version=12.02
 Database=
 File Content=
 Insight=
+Java=
+Mobile=
+Silverlight=
 Windows Applications=
 TEA=
 Web=
 .NET=
+WPF=
 XML=
 
 [ExtraFiles]

@@ -6,8 +6,9 @@
 'SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
 ''loginSamManage
 Systemutil.Run ieExecutableLocation, samManageUrl
-'Call LoginSamManage(samUserName,samPassword)
-Call LoginSAMManageADAM(samADAMUserName,samPassword)
+Call LoginSamManage(samUserName,samPassword)
+     
+'Call LoginSAMManageADAM(samADAMUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam()
 Call UnlockTokenSAMManage()'Copied response code
