@@ -3,20 +3,41 @@
 'Call LoginSamService(samUserName,samPassword)
 'Call EnrollUSBTokenSAMService()	
 ''-----------------Close browser
-'SystemUtil.CloseProcessByName "iexplore.exe" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Back to main menu")_;_script infofile_;_ZIP::ssf101.xml_;_
+'SystemUtil.CloseProcessByName "iexplore.exe"
 ''loginSamManage
-Systemutil.Run ieExecutableLocation, samManageUrl
-Call LoginSamManage(samUserName,samPassword)
-     
-'Call LoginSAMManageADAM(samADAMUserName,samPassword)
-Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call CompareCertSerNoInSacAndSam()
-Call UnlockTokenSAMManage()'Copied response code
-'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
-Call DisableTokenSAMManage()
-Call EnableTokenSAMManage()
+'Systemutil.Run ieExecutableLocation, samManageUrl
+'Call LoginSamManage(samUserName,samPassword)
+'     
+''Call LoginSAMManageADAM(samADAMUserName,samPassword)
+'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+'Call CompareCertSerNoInSacAndSam()
+'Call UnlockTokenSAMManage()'Copied response code
+''TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
+'Call DisableTokenSAMManage()
+'Call EnableTokenSAMManage()
+'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+'Call RemoveTokenFromInventory("Connected tokens")
+
+For Iterator = 1 To 3  
+	Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+    Call GetTokenDetailHelpDeskSAMManage("Tokens by user",enrollmentUserName)
+
+'RevokeTokenSAMManage(RevocationReason)
+With Browser("Browser").Page("SAM Management Center_4")
+	.WebButton("name:= Revoke").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Revoke")_;_script infofile_;_ZIP::ssf248.xml_;_
+	.WebList("name:= ddlRevokeReason").Select "Damaged" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlRevokeReason")_;_script infofile_;_ZIP::ssf249.xml_;_
+	.WebButton("RunRevoke").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Run")_;_script infofile_;_ZIP::ssf250.xml_;_
+	If .WebButton("DoneRevoke").GetROProperty(WaitProperty("disabled","0",20000)) Then
+		.WebButton("DoneRevoke").Click
+	Else 
+       'Logerror:TODO	
+	End If
+End With
+
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
+Next
+
 
 'Browser("Browser").Page("Page").Sync
 'Option Explicit
