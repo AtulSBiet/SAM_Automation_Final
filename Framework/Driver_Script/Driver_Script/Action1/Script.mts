@@ -18,27 +18,13 @@
 'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 'Call RemoveTokenFromInventory("Connected tokens")
 
-For Iterator = 1 To 3  
-	Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-    Call GetTokenDetailHelpDeskSAMManage("Tokens by user",enrollmentUserName)
-
-'RevokeTokenSAMManage(RevocationReason)
-With Browser("Browser").Page("SAM Management Center_4")
-	.WebButton("name:= Revoke").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Revoke")_;_script infofile_;_ZIP::ssf248.xml_;_
-	.WebList("name:= ddlRevokeReason").Select "Damaged" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlRevokeReason")_;_script infofile_;_ZIP::ssf249.xml_;_
-	.WebButton("RunRevoke").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Run")_;_script infofile_;_ZIP::ssf250.xml_;_
-	If .WebButton("DoneRevoke").GetROProperty(WaitProperty("disabled","0",20000)) Then
-		.WebButton("DoneRevoke").Click
-	Else 
-       'Logerror:TODO	
-	End If
-End With
-
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Damaged, Lost, Upgrade
+	
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
-Next
 
-
+MsgBox "Stop Test"
 'Browser("Browser").Page("Page").Sync
 'Option Explicit
 
