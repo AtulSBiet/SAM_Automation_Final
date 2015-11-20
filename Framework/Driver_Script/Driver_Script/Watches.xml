@@ -1,1 +1,3 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value=".WebEdit(&quot;name:= txtResultMessage&quot;, &quot;innertext:= Token successfully enrolled&quot;).Exist(5) = False" />
+</Properties>

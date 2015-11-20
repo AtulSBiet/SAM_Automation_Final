@@ -18,11 +18,39 @@
 'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 'Call RemoveTokenFromInventory("Connected tokens")
 
-Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Damaged, Lost, Upgrade
-	
-Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
+''Setup for Token Revocation
+'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+'Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
+''Teardown for Token Revocation
+'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+'Call RemoveTokenFromInventory("Connected tokens")
+'
+''Setup for Token Revocation
+'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+'Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Lost
+''Teardown for Token Revocation
+'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+'Call RemoveTokenFromInventory("Connected tokens")
+'
+''Setup for Token Revocation
+'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+'Call RevokeTokenSAMManage("Upgrade")'Revocation Reason is: Upgrade
+''Teardown for Token Revocation
+'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+'Call RemoveTokenFromInventory("Connected tokens")
+
+With Browser("Browser").Page("SAM Management Center_4")
+	.WebList("name:=ddlHelpDeskButtons").Select "Replace" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlHelpDeskButtons")_;_script infofile_;_ZIP::ssf253.xml_;_
+	.WebList("name:=ddlReplaceTokenReason").Select "Damaged" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlReplaceTokenReason")_;_script infofile_;_ZIP::ssf254.xml_;_
+	.WebButton("name:=Run","Index:=2").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Run")_;_script infofile_;_ZIP::ssf255.xml_;_
+	If .WebButton("DoneReplace").WaitProperty("disabled","0",30000) Then
+		If .WebEdit("name:=txtResultMessage", "innertext:=Token successfully revoked\.").Exist(5) = False Then
+		MsgBox Fail
+	.WebButton("DoneReplace").Click
+	End If @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Done")_;_script infofile_;_ZIP::ssf256.xml_;_
+End With
+
+
 
 MsgBox "Stop Test"
 'Browser("Browser").Page("Page").Sync
