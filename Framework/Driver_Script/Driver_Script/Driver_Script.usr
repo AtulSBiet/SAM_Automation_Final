@@ -35,17 +35,13 @@ ProductName=HP Unified Functional Testing
 Version=12.02
 
 [TulipAddins]
+ActiveX=
 Database=
 File Content=
 Insight=
-Java=
-Mobile=
-Silverlight=
 Windows Applications=
 TEA=
 Web=
-.NET=
-WPF=
 XML=
 
 [ExtraFiles]

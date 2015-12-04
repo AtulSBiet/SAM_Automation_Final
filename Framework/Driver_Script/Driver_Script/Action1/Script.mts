@@ -39,18 +39,17 @@
 'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 'Call RemoveTokenFromInventory("Connected tokens")
 
-With Browser("Browser").Page("SAM Management Center_4")
-	.WebList("name:=ddlHelpDeskButtons").Select "Replace" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlHelpDeskButtons")_;_script infofile_;_ZIP::ssf253.xml_;_
-	.WebList("name:=ddlReplaceTokenReason").Select "Damaged" @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebList("ddlReplaceTokenReason")_;_script infofile_;_ZIP::ssf254.xml_;_
-	.WebButton("name:=Run","Index:=2").Click @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Run")_;_script infofile_;_ZIP::ssf255.xml_;_
-	If .WebButton("DoneReplace").WaitProperty("disabled","0",30000) Then
-		If .WebEdit("name:=txtResultMessage", "innertext:=Token successfully revoked\.").Exist(5) = False Then
-		MsgBox Fail
-	.WebButton("DoneReplace").Click
-	End If @@ hightlight id_;_Browser("Browser").Page("SAM Management Center 5").WebButton("Done")_;_script infofile_;_ZIP::ssf256.xml_;_
-End With
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call ReplaceTokenSAMManage("Damaged")
+Call RemoveTokenFromInventory("Connected tokens")
 
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call ReplaceTokenSAMManage("Lost")
+Call RemoveTokenFromInventory("Connected tokens")
 
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call ReplaceTokenSAMManage("Upgrade")
+Call RemoveTokenFromInventory("Connected tokens")
 
 MsgBox "Stop Test"
 'Browser("Browser").Page("Page").Sync
