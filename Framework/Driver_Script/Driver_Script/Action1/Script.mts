@@ -1,43 +1,43 @@
-﻿''LoginSamService
-'Systemutil.Run ieExecutableLocation, samServiceUrl
-'Call LoginSamService(samUserName,samPassword)
-'Call EnrollUSBTokenSAMService()	
-''-----------------Close browser
-'SystemUtil.CloseProcessByName "iexplore.exe"
-''loginSamManage
-'Systemutil.Run ieExecutableLocation, samManageUrl
-'Call LoginSamManage(samUserName,samPassword)
-'     
-''Call LoginSAMManageADAM(samADAMUserName,samPassword)
-'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call CompareCertSerNoInSacAndSam()
-'Call UnlockTokenSAMManage()'Copied response code
-''TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
-'Call DisableTokenSAMManage()
-'Call EnableTokenSAMManage()
-'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-'Call RemoveTokenFromInventory("Connected tokens")
+﻿'LoginSamService
+Systemutil.Run ieExecutableLocation, samServiceUrl
+Call LoginSamService(samUserName,samPassword)
+Call EnrollUSBTokenSAMService()	
+'-----------------Close browser
+SystemUtil.CloseProcessByName "iexplore.exe"
+'loginSamManage
+Systemutil.Run ieExecutableLocation, samManageUrl
+Call LoginSamManage(samUserName,samPassword)
+     
+'Call LoginSAMManageADAM(samADAMUserName,samPassword)
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call CompareCertSerNoInSacAndSam()
+Call UnlockTokenSAMManage()'Copied response code
+'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
+Call DisableTokenSAMManage()
+Call EnableTokenSAMManage()
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
 
-''Setup for Token Revocation
-'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
-''Teardown for Token Revocation
-'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-'Call RemoveTokenFromInventory("Connected tokens")
-'
-''Setup for Token Revocation
-'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Lost
-''Teardown for Token Revocation
-'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-'Call RemoveTokenFromInventory("Connected tokens")
-'
-''Setup for Token Revocation
-'Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call RevokeTokenSAMManage("Upgrade")'Revocation Reason is: Upgrade
-''Teardown for Token Revocation
-'Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-'Call RemoveTokenFromInventory("Connected tokens")
+'Setup for Token Revocation
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
+'Teardown for Token Revocation
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
+
+'Setup for Token Revocation
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Lost
+'Teardown for Token Revocation
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
+
+'Setup for Token Revocation
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call RevokeTokenSAMManage("Upgrade")'Revocation Reason is: Upgrade
+'Teardown for Token Revocation
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Damaged")
