@@ -1,12 +1,12 @@
-﻿'LoginSamService
-Systemutil.Run ieExecutableLocation, samServiceUrl
-Call LoginSamService(samUserName,samPassword)
-Call EnrollUSBTokenSAMService()	
-'-----------------Close browser
-SystemUtil.CloseProcessByName "iexplore.exe"
-'loginSamManage
-Systemutil.Run ieExecutableLocation, samManageUrl
-Call LoginSamManage(samUserName,samPassword)
+﻿''LoginSamService
+'Systemutil.Run ieExecutableLocation, samServiceUrl
+'Call LoginSamService(samUserName,samPassword)
+'Call EnrollUSBTokenSAMService()	
+''-----------------Close browser
+'SystemUtil.CloseProcessByName "iexplore.exe"
+''loginSamManage
+'Systemutil.Run ieExecutableLocation, samManageUrl
+'Call LoginSamManage(samUserName,samPassword)
      
 'Call LoginSAMManageADAM(samADAMUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
@@ -40,16 +40,17 @@ Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call ReplaceTokenSAMManage("Damaged")
+Call ReplaceTokenSAMManage("Damaged")'Replace Reason is: Damaged
 Call RemoveTokenFromInventory("Connected tokens")
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call ReplaceTokenSAMManage("Lost")
+Call ReplaceTokenSAMManage("Lost")'Replace Reason is: Lost
 Call RemoveTokenFromInventory("Connected tokens")
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call ReplaceTokenSAMManage("Upgrade")
+Call ReplaceTokenSAMManage("Upgrade")'Replace Reason is: Upgrade
 Call RemoveTokenFromInventory("Connected tokens")
+Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
 
 MsgBox "Stop Test"
 'Browser("Browser").Page("Page").Sync
