@@ -1,7 +1,22 @@
-﻿''LoginSamService
-'Systemutil.Run ieExecutableLocation, samServiceUrl
-'Call LoginSamService(samUserName,samPassword)
-'Call EnrollUSBTokenSAMService()	
+﻿Systemutil.Run ieExecutableLocation, samServiceUrl
+Call LoginSamService(samUserName,samPassword)
+Call EnrollUSBTokenSAMService()
+With Browser("name:=SAM Self Service Center").Page("title:=SAM Self Service Center")
+		.Link("text:=Replace or upgrade the token").Click
+		.WebRadioGroup("name:=rbAction").Select "Lost" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebRadioGroup("rbAction")_;_script infofile_;_ZIP::ssf266.xml_;_
+		.WebEdit("name:=ctl00\$main\$txtNotes").Set "Testing Replace Function" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebEdit("ctl00$main$txtNotes")_;_script infofile_;_ZIP::ssf267.xml_;_
+		.WebCheckBox("name:=ctl00\$main\$chkConfirm").Set "ON" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebCheckBox("ctl00$main$chkConfirm")_;_script infofile_;_ZIP::ssf268.xml_;_
+		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebButton("Submit")_;_script infofile_;_ZIP::ssf269.xml_;_
+		.Link("text:=Start").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Start")_;_script infofile_;_ZIP::ssf270.xml_;_
+		.Link("text:=Yes. Continue with the").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Yes. Continue with the")_;_script infofile_;_ZIP::ssf275.xml_;_
+		.WebEdit("name:=ctl00\$main\$txtTokenPin").SetSecure "56690e0c179dcd140aba4c3cf944f023e864adf2fc572f351711" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebEdit("ctl00$main$txtTokenPin")_;_script infofile_;_ZIP::ssf276.xml_;_
+		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf277.xml_;_
+		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf278.xml_;_
+		If .WebElement("class:=MessageDisplayTitle","innertext:=Enrollment successfully completed").Exist(30) = False Then
+			'Fail
+		End If
+		.Link("name:=Back to main menu").Click
+End With
 ''-----------------Close browser
 'SystemUtil.CloseProcessByName "iexplore.exe"
 ''loginSamManage
@@ -50,6 +65,8 @@ Call RemoveTokenFromInventory("Connected tokens")
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Upgrade")'Replace Reason is: Upgrade
 Call RemoveTokenFromInventory("Connected tokens")
+
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
 
 MsgBox "Stop Test"
