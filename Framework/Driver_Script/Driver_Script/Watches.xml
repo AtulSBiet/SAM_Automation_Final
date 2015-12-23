@@ -1,4 +1,5 @@
 ﻿<Properties>
   <WatchEntry0 value=".WebEdit(&quot;name:= txtResultMessage&quot;, &quot;innertext:= Token successfully enrolled&quot;).Exist(5) = False" />
   <WatchEntry1 value=".WebEdit(&quot;name:=txtTemporaryLogonPassword&quot;).WaitProperty(&quot;disabled&quot;,False,10000)" />
+  <WatchEntry2 value=".WebEdit(&quot;name:=txtResultMessage&quot;, &quot;innertext:=Token successfully revoked\.&quot;).Exist(5)" />
 </Properties>

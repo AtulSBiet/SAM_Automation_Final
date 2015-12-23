@@ -1,41 +1,29 @@
-﻿Systemutil.Run ieExecutableLocation, samServiceUrl
-Call LoginSamService(samUserName,samPassword)
-Call EnrollUSBTokenSAMService()
-With Browser("name:=SAM Self Service Center").Page("title:=SAM Self Service Center")
-		.Link("text:=Replace or upgrade the token").Click
-		.WebRadioGroup("name:=rbAction").Select "Lost" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebRadioGroup("rbAction")_;_script infofile_;_ZIP::ssf266.xml_;_
-		.WebEdit("name:=ctl00\$main\$txtNotes").Set "Testing Replace Function" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebEdit("ctl00$main$txtNotes")_;_script infofile_;_ZIP::ssf267.xml_;_
-		.WebCheckBox("name:=ctl00\$main\$chkConfirm").Set "ON" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebCheckBox("ctl00$main$chkConfirm")_;_script infofile_;_ZIP::ssf268.xml_;_
-		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center").WebButton("Submit")_;_script infofile_;_ZIP::ssf269.xml_;_
-		.Link("text:=Start").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Start")_;_script infofile_;_ZIP::ssf270.xml_;_
-		.Link("text:=Yes. Continue with the").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").Link("Yes. Continue with the")_;_script infofile_;_ZIP::ssf275.xml_;_
-		.WebEdit("name:=ctl00\$main\$txtTokenPin").SetSecure "56690e0c179dcd140aba4c3cf944f023e864adf2fc572f351711" @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebEdit("ctl00$main$txtTokenPin")_;_script infofile_;_ZIP::ssf276.xml_;_
-		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf277.xml_;_
-		.WebButton("name:=Submit").Click @@ hightlight id_;_Browser("Browser").Page("SAM Self Service Center 2").WebButton("Submit")_;_script infofile_;_ZIP::ssf278.xml_;_
-		If .WebElement("class:=MessageDisplayTitle","innertext:=Enrollment successfully completed").Exist(30) = False Then
-			'Fail
-		End If
-		.Link("name:=Back to main menu").Click
-End With
-''-----------------Close browser
-'SystemUtil.CloseProcessByName "iexplore.exe"
+﻿'Systemutil.Run ieExecutableLocation, samServiceUrl
+'Call LoginSamService(samUserName,samPassword)
+'Call EnrollUSBTokenSAMService()
+'Call ReplaceOrUpgradeTheTokenSAMService("Lost")
+''TODO: Teardown for above step
+
 ''loginSamManage
-'Systemutil.Run ieExecutableLocation, samManageUrl
-'Call LoginSamManage(samUserName,samPassword)
+Systemutil.Run ieExecutableLocation, samManageUrl
+Call LoginSamManage(samUserName,samPassword)
      
 'Call LoginSAMManageADAM(samADAMUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call CompareCertSerNoInSacAndSam()
-Call UnlockTokenSAMManage()'Copied response code
+'Call CompareCertSerNoInSacAndSam()
+'Call UnlockTokenSAMManage()'Copied response code
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
 Call DisableTokenSAMManage()
 Call EnableTokenSAMManage()
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
 
 'Setup for Token Revocation
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
+'TODO:Validate Certificate no
 'Teardown for Token Revocation
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
@@ -68,8 +56,13 @@ Call RemoveTokenFromInventory("Connected tokens")
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
 
 MsgBox "Stop Test"
+'-----------------Close browser
+SystemUtil.CloseProcessByName "iexplore.exe"
+
+
 'Browser("Browser").Page("Page").Sync
 'Option Explicit
 
