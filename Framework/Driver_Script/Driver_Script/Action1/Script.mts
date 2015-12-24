@@ -7,11 +7,27 @@
 ''loginSamManage
 Systemutil.Run ieExecutableLocation, samManageUrl
 Call LoginSamManage(samUserName,samPassword)
+'IF (Browser("Browser").Dialog("text:=Windows Security").Exist(30)) Then
+'	Browser("Browser").Dialog("text:=Windows Security").Activate
+'    else
+'    LoginSamManage = "FAIL"
+'     call fn_CaptureScreenshot("LoginSamManage")
+'     call fn_ExecutionLog("LoginSamManage execution failed Login Window was not found","Failed")
+'    End If 
+	With Browser("Browser").Dialog("text:=Windows Security")
+		.WinEdit("window id:=0","Location:=1").Set SamUserName
+		.WinEdit("window id:=0","Location:=1").Type  micTab
+		If .WinEdit("window id:=0","Location:=2").Exist Then
+			.WinEdit("window id:=0","Location:=2").Set SamPassword	
+		End If
+		.WinButton("text:=OK").Click
+	End With
      
 'Call LoginSAMManageADAM(samADAMUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call CompareCertSerNoInSacAndSam()
-'Call UnlockTokenSAMManage()'Copied response code
+Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
+Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
+
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
 Call DisableTokenSAMManage()
 Call EnableTokenSAMManage()
