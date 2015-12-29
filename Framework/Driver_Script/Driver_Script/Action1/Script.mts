@@ -4,6 +4,10 @@
 'Call ReplaceOrUpgradeTheTokenSAMService("Lost")
 ''TODO: Teardown for above step
 
+'With Browser("title:=Application Details").Page("name:=AppDetails_window")
+'		.Sync
+'		CertificateSerialNo = .WbfGrid("html id:=grvAttributes").GetCellData(25,2)'TODO:We need to make it more robust by getting value from Row Namw:Cert Serial NO
+'	End With
 'loginSamManage
 Call OpenIEWithURL(samManageUrl)
 Call LoginSamManage(samUserName,samPassword)
@@ -13,9 +17,6 @@ Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
 
-'Call Fn_Unlock_Challenge_code_Copy_SAC()
-'Window("text:=SafeNet Authentication Client Tools").WinObject("text:=UnlockButton").click
-'Window("text:=SafeNet Authentication Client Tools").Dialog("text:=Unlock Token: .*").WinButton("window id:=1040").click
 
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
 Call DisableTokenSAMManage()'Add Parameters
