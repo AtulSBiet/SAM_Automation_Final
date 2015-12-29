@@ -13,9 +13,13 @@ Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
 
+'Call Fn_Unlock_Challenge_code_Copy_SAC()
+'Window("text:=SafeNet Authentication Client Tools").WinObject("text:=UnlockButton").click
+'Window("text:=SafeNet Authentication Client Tools").Dialog("text:=Unlock Token: .*").WinButton("window id:=1040").click
+
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
-Call DisableTokenSAMManage()
-Call EnableTokenSAMManage()
+Call DisableTokenSAMManage()'Add Parameters
+Call EnableTokenSAMManage()'Add Parameters
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
