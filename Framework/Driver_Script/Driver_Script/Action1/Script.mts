@@ -13,10 +13,9 @@ Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
 
-
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
-Call DisableTokenSAMManage()'Add Parameters
-Call EnableTokenSAMManage()'Add Parameters
+Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
+Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
