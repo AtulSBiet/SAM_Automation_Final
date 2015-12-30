@@ -4,10 +4,6 @@
 'Call ReplaceOrUpgradeTheTokenSAMService("Lost")
 ''TODO: Teardown for above step
 
-'With Browser("title:=Application Details").Page("name:=AppDetails_window")
-'		.Sync
-'		CertificateSerialNo = .WbfGrid("html id:=grvAttributes").GetCellData(25,2)'TODO:We need to make it more robust by getting value from Row Namw:Cert Serial NO
-'	End With
 'loginSamManage
 Call OpenIEWithURL(samManageUrl)
 Call LoginSamManage(samUserName,samPassword)

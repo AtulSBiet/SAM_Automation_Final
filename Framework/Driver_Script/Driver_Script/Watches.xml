@@ -1,5 +1,4 @@
 ﻿<Properties>
-  <WatchEntry0 value="certSerialNoSam" />
-  <WatchEntry1 value="err.description" />
-  <WatchEntry2 value="err.number" />
+  <WatchEntry0 value="CertificateSerialNo" />
+  <WatchEntry1 value="noOfRows" />
 </Properties>
