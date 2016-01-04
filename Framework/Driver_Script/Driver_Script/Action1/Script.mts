@@ -12,7 +12,8 @@ Call LoginSamManage(samUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
-
+ 
+Call fnLogStep(0,"StepName","stepDetails")
 'TODO: Integrate from Ashish SAC Code:Paste in SAC and Unlock via SAC
 Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
