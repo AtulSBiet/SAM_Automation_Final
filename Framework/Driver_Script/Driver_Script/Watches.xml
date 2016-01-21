@@ -1,1 +1,4 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value="err.description" />
+  <WatchEntry1 value="err.number" />
+</Properties>
