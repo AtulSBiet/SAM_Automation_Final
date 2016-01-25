@@ -11,8 +11,8 @@ Call LoginSamManage(samUserName,samPassword)
 
 'Call LoginSAMManageADAM(samADAMUserName,samPassword)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-'Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
-'Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
+Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
+Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName)
  
 Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)

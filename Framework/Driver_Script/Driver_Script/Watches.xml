@@ -1,4 +1,5 @@
 ﻿<Properties>
-  <WatchEntry0 value="err.description" />
-  <WatchEntry1 value="err.number" />
+  <WatchEntry0 value="m_DateTimeNow" />
+  <WatchEntry1 value="m_FileName" />
+  <WatchEntry2 value="logFolder" />
 </Properties>
