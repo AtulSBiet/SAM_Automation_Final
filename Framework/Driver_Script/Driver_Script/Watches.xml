@@ -1,5 +1,4 @@
 ﻿<Properties>
-  <WatchEntry0 value="m_DateTimeNow" />
-  <WatchEntry1 value="m_FileName" />
-  <WatchEntry2 value="logFolder" />
+  <WatchEntry0 value="strResStatus" />
+  <WatchEntry1 value="strStepDetail" />
 </Properties>

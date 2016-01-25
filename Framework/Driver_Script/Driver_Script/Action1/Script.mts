@@ -6,6 +6,7 @@
 
 'loginSamManage
 'Call CreateExcelForLogging()
+
 Call OpenIEWithURL(samManageUrl)
 Call LoginSamManage(samUserName,samPassword)
 
