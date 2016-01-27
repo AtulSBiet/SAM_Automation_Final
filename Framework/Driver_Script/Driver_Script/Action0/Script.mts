@@ -1,1 +1,2 @@
-﻿RunAction "Action1", oneIteration
+﻿RunAction "SAMManageTest", oneIteration
+RunAction "SAMServiceTest", oneIteration
