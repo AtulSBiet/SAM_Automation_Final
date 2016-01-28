@@ -1,15 +1,19 @@
-﻿result = "FAIL"
+﻿Option Explicit
+result = "FAIL"
 
 If result = "PASS" Then
 	'loginSamManage
-
+	result = LoginSamManage(samUserName,samPassword)
 Else
 	Call fn_ExecutionLog("LoginSamManage", "Not Started")
 	ExitAction'TODO:OR should we use ExitTest
 End If
 
-
+Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
+Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
+Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
 Call RemoveTokenFromInventory("Connected tokens")
 
