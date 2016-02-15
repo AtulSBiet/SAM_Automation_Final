@@ -1,5 +1,7 @@
 ﻿Option Explicit
-result = "FAIL"
+
+Dim result
+result = OpenIEWithURL(samManageUrl)
 
 If result = "PASS" Then
 	'loginSamManage
@@ -11,7 +13,7 @@ End If
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
-Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
+'Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
