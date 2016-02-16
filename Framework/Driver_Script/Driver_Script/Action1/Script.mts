@@ -1,6 +1,7 @@
 ﻿Option Explicit
 
 Dim result
+Call fn_DIGI_Connect_New_Token(1)
 result = OpenIEWithURL(samManageUrl)
 
 If result = "PASS" Then
@@ -19,36 +20,48 @@ Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
 'Teardown for Token Revocation
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
-'Setup for Token Revocation
+'Setup for Token Revocationi
+Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Lost
 'Teardown for Token Revocation
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 'Setup for Token Revocation
+Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RevokeTokenSAMManage("Upgrade")'Revocation Reason is: Upgrade
 'Teardown for Token Revocation
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
+Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Damaged")'Replace Reason is: Damaged
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
+Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Lost")'Replace Reason is: Lost
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Upgrade")'Replace Reason is: Upgrade
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
+Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_DIGI_Connect_New_Token(1)
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected Token")
 Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
-
+Call fn_DIGI_Disconnect_Connected_Token()
 '-----------------Close browser
 Call CloseIEBrowser()
  @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf279.xml_;_
