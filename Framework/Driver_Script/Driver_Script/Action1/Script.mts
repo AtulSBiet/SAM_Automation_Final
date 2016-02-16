@@ -12,50 +12,43 @@ Else
 End If
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
-Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
-'Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
-Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
 Call DisableTokenSAMManage("Tokens by user",enrollmentUserName)
-Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
-
-'Setup for Token Revocation
-Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
+Call EnableTokenSAMManage("Tokens by user",enrollmentUserName)
+Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 Call RevokeTokenSAMManage("Damaged")'Revocation Reason is: Damaged
 'Teardown for Token Revocation
-Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 'Setup for Token Revocation
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RevokeTokenSAMManage("Lost")'Revocation Reason is: Lost
 'Teardown for Token Revocation
-Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 'Setup for Token Revocation
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call RevokeTokenSAMManage("Upgrade")'Revocation Reason is: Upgrade
 'Teardown for Token Revocation
-Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Damaged")'Replace Reason is: Damaged
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Lost")'Replace Reason is: Lost
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call ReplaceTokenSAMManage("Upgrade")'Replace Reason is: Upgrade
-Call RemoveTokenFromInventory("Connected tokens")
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
 Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
-Call RemoveTokenFromInventory("Connected tokens")
+Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
+Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
+Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 
-MsgBox "Stop Test"
 '-----------------Close browser
 Call CloseIEBrowser()
+ @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf279.xml_;_
