@@ -1,1 +1,5 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value="instr(Dialog(&quot;AnywhereUSB Remote Hub&quot;).Static(&quot;attached text:=Host PC Connection Status:&quot;).GetVisibleText,&quot;Connection Successful&quot;)&gt;0" />
+  <WatchEntry1 value="(loopcountsucessmsg &lt; 30)" />
+  <WatchEntry2 value="Dialog(&quot;Configure Remote Hub&quot;).WinButton(&quot;OK&quot;).Exist(5)" />
+</Properties>

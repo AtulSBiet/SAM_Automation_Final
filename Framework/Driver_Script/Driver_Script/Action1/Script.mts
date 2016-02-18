@@ -1,6 +1,7 @@
 ﻿Option Explicit
-
 Dim result
+Call fn_Close_DIGI_Dialog()'Closing it if there is already process running otherwise opening digihub does not work
+Call fn_DIGI_Open()
 Call fn_DIGI_Connect_New_Token(1)
 result = OpenIEWithURL(samManageUrl)
 
@@ -59,9 +60,10 @@ Call EnrollUSBTokenSAMManage("Users by username", enrollmentUserName)
 Call GenerateTempLogonPassword("Tokens by user", enrollmentUserName)
 Call UnlockTokenSAMManage("Tokens by user",enrollmentUserName,newPinToUnlockSAMManage)
 Call UnassignTokenSAMManage("Tokens by user",enrollmentUserName)
-Call RemoveTokenFromInventory("Connected Token")
-Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
+Call RemoveTokenFromInventory("Connected tokens")
+'Call RemoveAllTokenFromInventory("Tokens by user",enrollmentUserName)
 Call fn_DIGI_Disconnect_Connected_Token()
+Call fn_Close_DIGI_Dialog()
 '-----------------Close browser
 Call CloseIEBrowser()
  @@ hightlight id_;_2_;_script infofile_;_ZIP::ssf279.xml_;_
