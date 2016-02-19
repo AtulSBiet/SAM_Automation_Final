@@ -1,5 +1,4 @@
 ﻿<Properties>
-  <WatchEntry0 value="instr(Dialog(&quot;AnywhereUSB Remote Hub&quot;).Static(&quot;attached text:=Host PC Connection Status:&quot;).GetVisibleText,&quot;Connection Successful&quot;)&gt;0" />
-  <WatchEntry1 value="(loopcountsucessmsg &lt; 30)" />
-  <WatchEntry2 value="Dialog(&quot;Configure Remote Hub&quot;).WinButton(&quot;OK&quot;).Exist(5)" />
+  <WatchEntry0 value="objWMI.ExecQuery(&quot;Select * from Win32_Process Where Name = '&quot; &amp; ProcessName &amp; &quot;'&quot;)" />
+  <WatchEntry1 value="objProcListAfterKilling.Count" />
 </Properties>
