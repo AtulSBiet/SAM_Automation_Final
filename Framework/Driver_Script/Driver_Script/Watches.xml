@@ -1,4 +1,5 @@
 ﻿<Properties>
-  <WatchEntry0 value="objWMI.ExecQuery(&quot;Select * from Win32_Process Where Name = '&quot; &amp; ProcessName &amp; &quot;'&quot;)" />
-  <WatchEntry1 value="objProcListAfterKilling.Count" />
+  <WatchEntry0 value="noOfRows" />
+  <WatchEntry1 value="Iterator" />
+  <WatchEntry2 value="CertificateSerialNo_1" />
 </Properties>
