@@ -1,7 +1,6 @@
 ﻿Option Explicit
 Dim result
 Dim Iterator
-Call CompareCertSerNoInSacAndSam("Tokens by user",enrollmentUserName)
 For Iterator = 1 To 10
 Call fn_Close_DIGI_Dialog()'Closing it if there is already process running otherwise opening digihub does not work
 Call fn_DIGI_Open()
