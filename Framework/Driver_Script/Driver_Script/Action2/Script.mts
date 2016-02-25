@@ -4,22 +4,22 @@ res="PASS"'res=fn_CreateNewCertificate("TRUE",CertName)           '"Create New M
 'If res="PASS" Then
 '	res=fn_Initialize_by_SACUsingSimplePassword("My Token",defaultTokenPin)
 'End if
-'If res="PASS" Then
-'	res=OpenIEWithURL(samServiceUrl)
-'End if
-'If res="PASS" Then
-'	res=LoginSamService(samUserName,samPassword)
-'End if
-'If res="PASS" Then
-'	res=EnrollUSBTokenSAMService(newTokenPin,defaultTokenPin)
-'End if
-'If res="PASS" Then
-''"Update Content of Enrolled token"
-'	res= fn_UpdateTokenContent_SamService(defaultTokenPinWithoutEncoding,NewPinForUpdate,samUserName,samPassword )
-'End If
-'If res="PASS" Then
-'	res = fn_ResetORChangeTokenPassword_SamService(NewPinForReset) '"Reset Token Password without Current Pin"
-'End If
+If res="PASS" Then
+	res=OpenIEWithURL(samServiceUrl)
+End if
+If res="PASS" Then
+	res=LoginSamService(samUserName,samPassword)
+End if
+If res="PASS" Then
+	res=EnrollUSBTokenSAMService(newTokenPin,defaultTokenPin)
+End if
+If res="PASS" Then
+'"Update Content of Enrolled token"
+	res= fn_UpdateTokenContent_SamService(defaultTokenPinWithoutEncoding,NewPinForUpdate,samUserName,samPassword )
+End If
+If res="PASS" Then
+	res = fn_ResetORChangeTokenPassword_SamService(NewPinForReset) '"Reset Token Password without Current Pin"
+End If
 If res="PASS" Then
 	res = fn_ResetORChangeTokenPassword_SamService_WithCurrentPin(defaultTokenPinWithoutEncoding,LatestPinForReset) '"Reset Token Password with current PIN"
 End If

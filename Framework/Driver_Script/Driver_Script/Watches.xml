@@ -1,1 +1,4 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value="resultstring" />
+  <WatchEntry1 value="result" />
+</Properties>
