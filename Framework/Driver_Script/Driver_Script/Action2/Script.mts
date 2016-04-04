@@ -27,6 +27,7 @@ End If
 If res="PASS" Then
 	res = fn_ResetORChangeTokenPassword_SamService_WithCurrentPin(currentPinForReset,LatestPinForReset) '"Reset Token Password with current PIN"
 End If
+res="PASS"
 If res="PASS" Then
 	res = fn_UnlockToken_SamService(NewPinForUnlock,NewPinForUnlock ) '"Unlock Token from SAC"
 End If
@@ -39,8 +40,7 @@ If res="PASS" Then
 	Call CloseIEBrowser ()
 	call CleanFromSAMManage()
 End If
-
-res=CleanFromSAMManage()
+res="PASS"
 If res="PASS" Then
 	Call fn_DIGI_Connect_New_Token(FirstPort)
 	Call OpenIEWithURL(samServiceUrl)
