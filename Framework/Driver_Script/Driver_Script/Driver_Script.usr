@@ -12,8 +12,15 @@ DevelopTool=AQT
 
 [Actions]
 Action0=Action0\Script.mts
-SAMManageTest=Action1\Script.mts
-SAMServiceTest=Action2\Script.mts
+SAMManage_Scenarios=Action11\Script.mts
+SAMManage_Enrollment=Action6\Script.mts
+SAMManage_Operations=Action10\Script.mts
+SAMManage_ReplaceToken=Action8\Script.mts
+SAMService_Enrollment=Action5\Script.mts
+SAMService_ReplaceToken=Action7\Script.mts
+SAMService_Operations=Action9\Script.mts
+SAMService_Scenarios=Action12\Script.mts
+SAC10=Action13\Script.mts
 
 [VuserProfiles]
 Profiles=Default Profile
@@ -40,11 +47,9 @@ ActiveX=
 Database=
 File Content=
 Insight=
-Java=
 Windows Applications=
 TEA=
 Web=
-.NET=
 XML=
 
 [ExtraFiles]
@@ -54,9 +59,30 @@ Parameters.mtr=
 Action0\Script.mts=
 Action0\Resource.mtr=
 Action0\ObjectRepository.bdb=
-Action1\Script.mts=
-Action1\Resource.mtr=
-Action1\ObjectRepository.bdb=
-Action2\Script.mts=
-Action2\Resource.mtr=
-Action2\ObjectRepository.bdb=
+Action11\Script.mts=
+Action11\Resource.mtr=
+Action11\ObjectRepository.bdb=
+Action6\Script.mts=
+Action6\Resource.mtr=
+Action6\ObjectRepository.bdb=
+Action10\Script.mts=
+Action10\Resource.mtr=
+Action10\ObjectRepository.bdb=
+Action8\Script.mts=
+Action8\Resource.mtr=
+Action8\ObjectRepository.bdb=
+Action5\Script.mts=
+Action5\Resource.mtr=
+Action5\ObjectRepository.bdb=
+Action7\Script.mts=
+Action7\Resource.mtr=
+Action7\ObjectRepository.bdb=
+Action9\Script.mts=
+Action9\Resource.mtr=
+Action9\ObjectRepository.bdb=
+Action12\Script.mts=
+Action12\Resource.mtr=
+Action12\ObjectRepository.bdb=
+Action13\Script.mts=
+Action13\Resource.mtr=
+Action13\ObjectRepository.bdb=

@@ -1,4 +1,5 @@
 ﻿<Properties>
-  <WatchEntry0 value="Browser(&quot;name:=SAM Self Service Center&quot;).Dialog(&quot;text:=Internet Explorer&quot;).WinButton(&quot;text:=&amp;Allow access&quot;)" />
-  <WatchEntry1 value="res" />
+  <WatchEntry0 value="splitvalue" />
+  <WatchEntry1 value="certSerialNo" />
+  <WatchEntry2 value="value" />
 </Properties>
