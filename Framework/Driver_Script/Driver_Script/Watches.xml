@@ -1,1 +1,4 @@
-﻿<Properties />
+﻿<Properties>
+  <WatchEntry0 value="Environment.Value(&quot;SACMajorVersion&quot;)" />
+  <WatchEntry1 value="(Environment.Value(&quot;SACMajorVersion&quot;)=&quot;10&quot;)" />
+</Properties>

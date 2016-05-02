@@ -1,7 +1,9 @@
 ﻿Option Explicit
 Call SetSACMajorVersionInUFT()'Setting SACMajorVersion Environment Value in UFT
+
+Call fn_Get_Certificate_SerialNo_from_SAC(1)
 Dim Iterator
-For Iterator = 1 To 10	
+For Iterator = 1 To 10
 	Call fn_Open_SAC()
 	Call fn_Get_Certificate_SerialNo_from_SAC(1)
 	Call fn_SAC_Close()
